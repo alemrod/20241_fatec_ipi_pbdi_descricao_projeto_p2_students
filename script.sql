@@ -89,23 +89,43 @@
 --3
  
  
-CREATE OR REPLACE PROCEDURE aprovados_sozinho(
-    OUT aprovado INT
-    )
+-- CREATE OR REPLACE PROCEDURE aprovados_sozinho(
+--     OUT aprovado INT
+--     )
+-- LANGUAGE plpgsql
+-- AS $$
+-- BEGIN
+--     SELECT COUNT (studentid)
+--     INTO aprovado
+--     FROM tb_students
+--     WHERE prep_study = 1 and  grade > 0;
+-- END;
+-- $$
+-- DO $$
+-- DECLARE
+--     aprovado INT;
+-- BEGIN
+--     CALL aprovados_sozinho(aprovado);
+--     RAISE NOTICE 'A quantidade de aprovados que estudam sozinho é %', aprovado;
+-- END;
+-- $$;
+
+--4
+
+CREATE OR REPLACE FUNCTION contar_aprovados()
+RETURNS INTEGER
 LANGUAGE plpgsql
 AS $$
-BEGIN
-    SELECT COUNT (studentid)
-    INTO aprovado
-    FROM tb_students
-    WHERE prep_study = 1 and  grade > 0;
-END;
-$$
-DO $$
 DECLARE
-    aprovado INT;
+    quantidade INTEGER;
 BEGIN
-    CALL aprovados_sozinho(aprovado);
-    RAISE NOTICE 'A quantidade de aprovados que estudam sozinho é %', aprovado;
+    SELECT COUNT(*)
+    INTO quantidade
+    FROM tb_students
+    WHERE salary = 5 AND prep_exam = 2 AND grade > 0;
+ 
+    RETURN quantidade;
 END;
 $$;
+ 
+SELECT contar_aprovados() AS alunos_aprovados;
