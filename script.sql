@@ -68,20 +68,44 @@
 
 --2
 
-CREATE OR REPLACE FUNCTION aprovados_pais_phd()
-RETURNS INTEGER AS $$
-DECLARE
-    aprovados INTEGER;
+-- CREATE OR REPLACE FUNCTION aprovados_pais_phd()
+-- RETURNS INTEGER AS $$
+-- DECLARE
+--     aprovados INTEGER;
+-- BEGIN
+--     SELECT COUNT(*)
+--     INTO aprovados
+--     FROM tb_students
+--     WHERE grade > 0 
+--     AND mother_edu = 6
+--     AND father_edu = 6;
+ 
+--     RETURN aprovados;
+-- END;
+-- $$ LANGUAGE plpgsql;
+ 
+-- SELECT aprovados_pais_phd();
+
+--3
+ 
+ 
+CREATE OR REPLACE PROCEDURE aprovados_sozinho(
+    OUT aprovado INT
+    )
+LANGUAGE plpgsql
+AS $$
 BEGIN
-    SELECT COUNT(*)
-    INTO aprovados
+    SELECT COUNT (studentid)
+    INTO aprovado
     FROM tb_students
-    WHERE grade > 0 
-    AND mother_edu = 6
-    AND father_edu = 6;
- 
-    RETURN aprovados;
+    WHERE prep_study = 1 and  grade > 0;
 END;
-$$ LANGUAGE plpgsql;
- 
-SELECT aprovados_pais_phd();
+$$
+DO $$
+DECLARE
+    aprovado INT;
+BEGIN
+    CALL aprovados_sozinho(aprovado);
+    RAISE NOTICE 'A quantidade de aprovados que estudam sozinho é %', aprovado;
+END;
+$$;
