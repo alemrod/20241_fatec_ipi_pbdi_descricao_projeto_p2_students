@@ -1,10 +1,67 @@
-CREATE TABLE alunos (
-    id serial PRIMARY KEY,
-    nome VARCHAR(255),
-    status VARCHAR(50),
-    pai_formacao VARCHAR(50),
-    mae_formacao VARCHAR(50),
-    estuda_sozinho BOOLEAN,
-    salario DECIMAL(10, 2),
-    frequencia_estudos VARCHAR(50)
+CREATE TABLE tb_students (
+    studentid VARCHAR(50) PRIMARY KEY,
+    age INT,
+    gender INT,
+    hs_type INT,
+    scholarship INT,
+    work INT,
+    activity INT,
+    partner INT,
+    salary INT,
+    transport INT,
+    living INT,
+    mother_edu INT,
+    father_edu INT,
+    num_siblings INT,
+    kids INT,
+    mother_job INT,
+    father_job INT,
+    study_hrs INT,
+    read_freq INT,
+    read_freq_sci INT,
+    attend_dept INT,
+    impact INT,
+    attend INT,
+    prep_study INT,
+    prep_exam INT,
+    notes INT,
+    listens INT,
+    likes_discuss INT,
+    classroom INT,
+    cuml_gpa INT,
+    exp_gpa INT,
+    course_id INT,
+    grade INT
 );
+ 
+ 
+select * from tb_students
+ 
+ 
+ALTER TABLE tb_students drop column age 
+ALTER TABLE tb_students drop column gender;
+ALTER TABLE tb_students drop column hs_type;
+ALTER TABLE tb_students drop column scholarship;
+ALTER TABLE tb_students drop column work;
+ALTER TABLE tb_students drop column activity;
+ALTER TABLE tb_students drop column partner;
+ALTER TABLE tb_students drop column transport;
+ALTER TABLE tb_students drop column living;
+ALTER TABLE tb_students drop column num_siblings;
+ALTER TABLE tb_students drop column kids;
+ALTER TABLE tb_students drop column mother_job;
+ALTER TABLE tb_students drop column study_hrs;
+ALTER TABLE tb_students drop column read_freq;
+ALTER TABLE tb_students drop column read_freq_sci;
+ALTER TABLE tb_students drop column attend;
+ALTER TABLE tb_students drop column notes;
+ALTER TABLE tb_students drop column listens;
+ALTER TABLE tb_students drop column likes_discuss;
+ALTER TABLE tb_students drop column classroom;
+ALTER TABLE tb_students drop column cuml_gpa;
+ALTER TABLE tb_students drop column exp_gpa;
+ALTER TABLE tb_students drop column course_id;
+ALTER TABLE tb_students drop column attend_dept;
+ALTER TABLE tb_students drop column impact;
+ 
+select * from tb_students
